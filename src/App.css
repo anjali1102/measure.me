@@ -1,5 +1,12 @@
-.header{
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: url(wand.png);
+}
+
+.header {
   height: 19rem;
   width: 100%;
-  background-color: #FFFFC2;
+  background-color: black;
 }

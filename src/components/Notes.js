@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateNote } from "../modals/CreateNote";
+import { Card } from "./Card";
 const Notes = () => {
   const [modal, setModal] = useState(false);
   const [taskList, setTaskList] = useState([]);
 
+  useEffect(() => {
+    let arr = localStorage.getItem("taskList");
+    if (arr) {
+      let obj = JSON.parse(arr);
+      setTaskList(obj);
+    }
+  }, []);
   const toggle = () => {
     setModal(!modal);
   };
@@ -11,6 +19,7 @@ const Notes = () => {
   const saveTask = (taskObj) => {
     let tempList = taskList;
     tempList.push(taskObj);
+    localStorage.setItem("taskList", JSON.stringify(tempList));
     setTaskList(tempList);
     setModal(false);
   };
@@ -18,9 +27,10 @@ const Notes = () => {
   return (
     <div>
       <div className="header text-center">
-        <h1>Take Notes</h1>
+        <div className="row">
+          <h1 className="animate-charcter">measure.me </h1>
+        </div>
         <button
-          className="btn btn-secondary mt-2"
           onClick={() => {
             setModal(true);
           }}
@@ -29,7 +39,7 @@ const Notes = () => {
         </button>
       </div>
       <div className="task-container">
-        {taskList.map((obj) => <li>{obj.Name}</li>)}
+        {taskList && taskList.map((obj,index) => <Card taskObj={obj} index={index} />)}
       </div>
       <CreateNote toggle={toggle} modal={modal} save={saveTask} />
     </div>
