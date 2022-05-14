@@ -47,9 +47,5 @@ button:active {
   transform: translateY(-1px);
 }
 
-.task-container {
-  height: 400px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
+
+
