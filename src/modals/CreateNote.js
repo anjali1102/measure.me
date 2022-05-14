@@ -16,7 +16,7 @@ const CreateNote = ({ modal, toggle, save }) => {
   const handleSave = () => {
     let taskObj = {};
     taskObj["Name"] = taskTitle;
-    taskObj["Decription"] = description;
+    taskObj["Description"] = description;
     save(taskObj);
   };
 
